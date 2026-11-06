@@ -16,7 +16,7 @@ Scanned all Workers on account `fb7dc7b69b662480cd5961a4d1913c78` for
 | `cloudless-web-production` | production | `@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ migrated (PR #2371) |
 | `cloudless-gr-staging` | staging | `@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ migrated (same code path) |
 | `cloudless-monorepo-production-mainnextappscript` | production | `@cf/meta/llama-3.2-3b-instruct` (NLP fallback default) | ✅ migrated (PR #2371) |
-| `interview-coach` | prod | `@cf/myshell-ai/melotts` (`/tts`) | ⚠️ **open** — needs `@cf/deepgram/aura-2-en`, non drop-in API change; source not in local repos |
+| `interview-coach` | prod | `@cf/myshell-ai/melotts` (`/tts`) | ✅ migrated + deployed 2026-11-06 — source recovered to [Themis128/interview-coach](https://github.com/Themis128/interview-coach), `/tts` now uses `@cf/deepgram/aura-2-en` |
 
 Verified NOT deprecated (no action):
 `@cf/meta/llama-3.1-8b-instruct-fast`, `@cf/meta/llama-3.3-70b-instruct-fp8-fast`,
@@ -48,11 +48,8 @@ Verified NOT deprecated (no action):
 
 ## Still TODO
 
-1. **`interview-coach` `/tts`** — locate source or patch deployed worker;
-   rewrite handler for Deepgram Aura 2 (`text` + `speaker` params, audio bytes
-   response) instead of MeloTTS (`prompt`/`lang`/`voice`, base64 `audio`).
-2. Post-deploy smoke: coding-agent run + contact-form NLP on production.
-3. Long-term: dedicated Google Cloud OAuth client_id for rclone `gdrive:` remote
+1. Post-deploy smoke: coding-agent run + contact-form NLP on production.
+2. Long-term: dedicated Google Cloud OAuth client_id for rclone `gdrive:` remote
    (shared client_id retires during 2026) — unrelated but flagged in same window.
 
 ## Verification commands
